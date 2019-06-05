@@ -19,6 +19,14 @@ app.config(function($routeProvider)  {
             templateUrl: 'pages/poi/poi.html',
             controller : 'poiController as poiCtrl'
         })
+
+   // categories
+   .when('/categories', {
+    templateUrl: 'pages/categories/categories.html',
+    controller : 'categoryController as categoriesCtrl'
+})
+
+
         // other
         .otherwise({ redirectTo: '/' });
 });
