@@ -15,15 +15,22 @@
                 <script src="pages/favorites/favoritesController.js"></script>
                 <script src="pages/home/homeController.js"></script>
                 <script src="pages/showAttraction/showAttraction.js"></script>
+
+                <style>
+                    body{
+                        font-size: 20px;
+                        background-color:rgb(199, 240, 124);
+                    }
+                </style>
                
     </head>
     <body ng-app="myApp">
         <!-- the website -->
-        <h1>The city of Barcelona</h1>
+        <text style="font-size: 90px;">The city of Barcelona</text>
         <br>
         <!-- <span ng-bind="Mainctrl.helloMsg"></span> -->
         <!-- menu -->
-        <table>
+        <table style="font-size: 18px;background-color:rgb(200, 214, 173);">
             <tr>
                     <th>
                             search for a point of view: 
@@ -51,6 +58,9 @@
                             <a href="#!favorites" ng-hide="loggedIn">your favorite attractions</a>
                         </span>
                 </th>
+                <th>
+                            <input ng-disabled="" type="submit" id="submitSaveList" value="save your favorite attractions list!">
+                    </th>
                 <th>
                     <!-- LOG IN -->
                         username:

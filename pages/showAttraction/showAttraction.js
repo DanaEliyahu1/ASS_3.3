@@ -6,7 +6,7 @@ angular.module("myApp").controller('showAttractionController', function($scope, 
   //let options = new RequestOptions({ headers: myHeaders });
   self=this;
   self.attractionName="Sasha Bar 1968";
-  $http.put('http://localhost:3000/view/viewAttraction/'+self.attractionName,{},{
+  $http.get('http://localhost:3000/view/viewAttraction/'+self.attractionName,{},{
     headers:myHeaders /*{
       'Accept': 'application/json',
       'x-auth-token':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Im5pbXJvZCIsIm5hbWUiOiJuaW1yb2QiLCJhZG1pbiI6dHJ1ZSwiaWF0IjoxNTU5OTkwMzMwLCJleHAiOjE1NjAwNzY3MzB9.pBJiKGP5fUP-MGLa-yIeoHdJofus-u_EQGoSEybZD38'
@@ -19,4 +19,9 @@ angular.module("myApp").controller('showAttractionController', function($scope, 
       self.currAttraction = response.statusText;
       
   });
+  $scope.saveAttraction = function(name) {
+    //if name in attraction ok
+  //if name not in attractions add.
+  }
 }); 
+
