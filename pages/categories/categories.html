@@ -15,14 +15,21 @@
 </head>
 <!-- css -->
 <style>
-    img {
-        height: 100px;
-    }
+    
 </style>
 
 <h2>CATEGORIES</h2>
 <!-- display all categories -->
-<p ng-controller="categoryCtrl" ng-repeat="category in categoryCtrl.categories">
-     <span ng-bind="category"></span><br>
-   
-</p>
+<body ng-app="myApp" ng-controller="categoryCtrl">
+    <span  ng-repeat="category in categoryCtrl.categories">
+         <span ng-bind="category.categoryName"></span>       
+    </span>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    for now, delete later:
+    <br>
+    <span ng-bind="categoryCtrl.test"></span>
+</body>

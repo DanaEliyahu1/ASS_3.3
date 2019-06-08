@@ -1,0 +1,40 @@
+<head>
+  <!-- load angular -->
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.js"></script>
+  <script src="https://code.angularjs.org/1.7.8/angular-route.js"></script>
+
+  <!-- load app -->
+  <script src="app.js"></script>
+
+
+
+
+</head>
+<!-- css -->
+<style>
+        .attractionStyle{
+            display: inline-block;
+            background-color:rgba(206, 233, 224, 0.562);
+            width:250px;
+            height:180px;
+            text-align: center;
+        }
+        .attractionImg {
+            height: 150px;
+            width: 200px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .starImg {
+            height: 15px;
+            width: 15px;
+        }
+    </style>
+
+
+<!-- display all categories -->
+<body ng-app="myApp" ng-controller="showAttractionCtrl">
+  <!--  <H1> <text ng-bind="showAttractionCtrl.currAttraction.attractionName"> </text> </H1> -->
+    <p ng-bind="showAttractionCtrl.currAttraction"></p>
+</body>

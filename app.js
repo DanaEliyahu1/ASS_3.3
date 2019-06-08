@@ -1,4 +1,4 @@
-let app = angular.module('myApp', ["ngRoute"]);
+let app = angular.module('myApp', ["ngRoute"])
 
 // config routes
 app.config(function($routeProvider)  {
@@ -6,7 +6,8 @@ app.config(function($routeProvider)  {
         // homepage
         .when('/', {
             // this is a template
-            template: '<h1>This is the default route</h1>'
+            templateUrl: 'pages/home/home.html',
+            controller : 'homeController as homeCtrl'
         })
         // about
         .when('/about', {
@@ -20,11 +21,20 @@ app.config(function($routeProvider)  {
             controller : 'poiController as poiCtrl'
         })
 
-   // categories
-   .when('/categories', {
-    templateUrl: 'pages/categories/categories.html',
-    controller : 'categoryController as categoriesCtrl'
-})
+        // categories
+        .when('/categories', {
+            templateUrl: 'pages/categories/categories.html',
+            controller : 'categoryController as categoryCtrl'
+        })
+
+        .when('/favorites', {
+            templateUrl: 'pages/favorites/favorites.html',
+            controller : 'favoritesController as favoritesCtrl'
+        })
+        .when('/showAttraction', {
+            templateUrl: 'pages/showAttraction/showAttraction.html',
+            controller : 'showAttractionController as showAttractionCtrl'
+        })
 
 
         // other

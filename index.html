@@ -1,41 +1,71 @@
 <html>
     <head>
-        <title>My Website</title>
+        <title>The city of Barcelona</title>
+                <!-- load angular -->
+                <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.js"></script>
+                <script src="https://code.angularjs.org/1.7.8/angular-route.js"></script>
+        
+                <!-- load app -->
+                <script src="app.js"></script>
+        
+                <!-- load controllers -->
+                <script src="pages/about/aboutController.js"></script>
+                <script src="pages/poi/poiController.js"></script>
+                <script src="pages/categories/categoryController.js"></script>
+                <script src="pages/favorites/favoritesController.js"></script>
+                <script src="pages/home/homeController.js"></script>
+                <script src="pages/showAttraction/showAttraction.js"></script>
+               
     </head>
     <body ng-app="myApp">
-        <!-- load angular -->
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.js"></script>
-        <script src="https://code.angularjs.org/1.7.8/angular-route.js"></script>
-
-        <!-- load app -->
-        <script src="app.js"></script>
-
-        <!-- load controllers -->
-        <script src="pages/about/aboutController.js"></script>
-        <script src="pages/poi/poiController.js"></script>
-        <script src="pages/categories/categoryController.js"></script>
-
-
         <!-- the website -->
-        <h1>My Website</h1>
-
+        <h1>The city of Barcelona</h1>
+        <br>
+        <!-- <span ng-bind="Mainctrl.helloMsg"></span> -->
         <!-- menu -->
-        <ul>
-            <li>
-                <a href="#!">Home</a>
-            </li>
-            <li>
-                <a href="#!about">About</a>
-            </li>
-            <li>
-                <a href="#!poi">POI</a>
-            </li>
-            <li>
-                <a href="#!categories">Categories</a>
-            </li>
-        </ul>
+        <table>
+            <tr>
+                    <th>
+                            search for a point of view: 
+                            <br>
+                            <input name="searchText" ng-model="searchText" required ng-minlength="1">
+                            <input ng-disabled="" type="submit" id="submitSearch" value="search">
+                    </th>
+                <th>
+                    <span>
+                        <a href="#!">Home</a>
+                    </span>
+                    <span>
+                        <a href="#!about">About</a>
+                    </span>
+                    <span>
+                        <a href="#!poi">POI</a>
+                    </span>
+                    <span>
+                        <a href="#!categories">Categories</a>
+                    </span>
+                    <span>
+                        <a href="#!register">register</a>
+                    </span>
+                    <span>
+                            <a href="#!favorites" ng-hide="loggedIn">your favorite attractions</a>
+                        </span>
+                </th>
+                <th>
+                    <!-- LOG IN -->
+                        username:
+                        <input name="username" ng-model="username" required ng-minlength="4">
+                        <br>
+                        password:
+                        <input type="password" name="password" ng-model="password">
+                        <br>
+                        <input ng-disabled="" type="submit" id="submitLogIn" value="submit">
+                </th>
+            </tr>
+        </table>
+           
 
         <!-- This section changes as the hashbang changes -->
-        <div ng-view></div>
+        <div ng-view=""></div>
     </body>
 </html>
