@@ -18,4 +18,8 @@ angular.module("myApp").controller('favoritesController', function($scope, $http
       self.favorites = response.statusText;
       
   });
+  $scope.saveAttraction = function() {
+    //if name in attraction ok
+  //if name not in attractions add.
+  }
 }); 

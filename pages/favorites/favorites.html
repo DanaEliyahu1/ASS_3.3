@@ -33,11 +33,16 @@
             height: 15px;
             width: 15px;
         }
+        .saveList{
+            height: 50px;
+            font-size: 24px;
+        }
 </style>
 
 <h2>YOUR CURRENT SAVED POINTS OF VIEW </h2> 
 <br>
-
+        <input class="saveList"  ng-click="saveList()"ng-disabled="" type="submit" id="submitSaveList" value="save your favorite attractions list!">
+        <br>
 <!-- display all categories -->
 <body ng-app="myApp" ng-controller="favoritesCtrl">
 
