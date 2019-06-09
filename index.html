@@ -27,8 +27,6 @@
 </head>
 
 <body ng-app="myApp">
-    <!-- pnly for now  !!!!!!!!!!!!!!!!!11-->
-    {{ $scope.username="guest"}}
     <!-- the website -->
     <text style="font-size: 90px;">The city of Barcelona</text>
     <br>
@@ -36,12 +34,26 @@
     <!-- menu -->
     <table style="font-size: 18px;background-color:rgb(200, 214, 173);">
         <tr>
-            <th>
-                search for a point of view:
+        </tr>
+        <th>
+            {{ $scope.username="guest"}} hello
+            <text ng-bind="$scope.username"></text>
+        </th>
+        <th>
+        <span ng-show="$scope.username=='guest'">
+            <!-- LOG IN -->
+            
+                username:
+                <input name="username" ng-model="username" required ng-minlength="4">
+                <br> password:
+                <input type="password" name="password" ng-model="password">
                 <br>
-                <input name="searchText" ng-model="searchText" required ng-minlength="1">
-                <input ng-disabled="" type="submit" id="submitSearch" value="search">
-            </th>
+                <input ng-disabled="" type="submit" id="submitLogIn" value="submit">
+            
+        </span>
+    </th>
+        <tr>
+
             <th>
                 <span>
                     <a href="#!">Home</a>
@@ -66,19 +78,10 @@
 
             </th>
             <th>
-                hello
-                <text ng-bind="$scope.username"></text>
-            </th>
-            <th>
-                <span ng-show="$scope.username=='guest'">
-                    <!-- LOG IN -->
-                    username:
-                    <input name="username" ng-model="username" required ng-minlength="4">
-                    <br> password:
-                    <input type="password" name="password" ng-model="password">
-                    <br>
-                    <input ng-disabled="" type="submit" id="submitLogIn" value="submit">
-                </span>
+                search for a point of view:
+                <br>
+                <input name="searchText" ng-model="searchText" required ng-minlength="1">
+                <input ng-disabled="" type="submit" id="submitSearch" value="search">
             </th>
         </tr>
     </table>
