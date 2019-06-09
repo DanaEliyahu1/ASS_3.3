@@ -42,15 +42,12 @@
     }
 </style>
 
-<h2>YOUR CURRENT SAVED POINTS OF VIEW </h2>
+<h2>HERE ARE THE POINTS OF VIEW YOU WERE LOOKING FOR </h2>
 <br>
-<input class="saveList" ng-click="saveList()" ng-disabled="" type="submit" id="submitSaveList" value="save your favorite attractions list!">
-<br>
-<!-- display all categories -->
 
 <body ng-app="myApp" ng-controller="favoritesCtrl">
 
-    <span class="attractionStyle" ng-repeat="attraction in favoritesCtrl.favorites">
+    <span class="attractionStyle" ng-repeat="attraction in resultsCtrl.results">
         <div ng-bind="attraction.attractionName"></div>
         <img class="attractionImg" ng-src=",./../{{attraction.picture}}">
         <br>

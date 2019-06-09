@@ -1,78 +1,91 @@
 <html>
-    <head>
-        <title>The city of Barcelona</title>
-                <!-- load angular -->
-                <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.js"></script>
-                <script src="https://code.angularjs.org/1.7.8/angular-route.js"></script>
-        
-                <!-- load app -->
-                <script src="app.js"></script>
-        
-                <!-- load controllers -->
-                <script src="pages/about/aboutController.js"></script>
-                <script src="pages/poi/poiController.js"></script>
-                <script src="pages/categories/categoryController.js"></script>
-                <script src="pages/favorites/favoritesController.js"></script>
-                <script src="pages/home/homeController.js"></script>
-                <script src="pages/showAttraction/showAttraction.js"></script>
 
-                <style>
-                    body{
-                        font-size: 20px;
-                        background-color:rgb(199, 240, 124);
-                    }
-                </style>
-               
-    </head>
-    <body ng-app="myApp">
-        <!-- the website -->
-        <text style="font-size: 90px;">The city of Barcelona</text>
-        <br>
-        <!-- <span ng-bind="Mainctrl.helloMsg"></span> -->
-        <!-- menu -->
-        <table style="font-size: 18px;background-color:rgb(200, 214, 173);">
-            <tr>
-                    <th>
-                            search for a point of view: 
-                            <br>
-                            <input name="searchText" ng-model="searchText" required ng-minlength="1">
-                            <input ng-disabled="" type="submit" id="submitSearch" value="search">
-                    </th>
-                <th>
-                    <span>
-                        <a href="#!">Home</a>
-                    </span>
-                    <span>
-                        <a href="#!about">About</a>
-                    </span>
-                    <span>
-                        <a href="#!poi">POI</a>
-                    </span>
-                    <span>
-                        <a href="#!categories">Categories</a>
-                    </span>
+<head>
+    <title>The city of Barcelona</title>
+    <!-- load angular -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.js"></script>
+    <script src="https://code.angularjs.org/1.7.8/angular-route.js"></script>
+
+    <!-- load app -->
+    <script src="app.js"></script>
+
+    <!-- load controllers -->
+    <script src="pages/about/aboutController.js"></script>
+    <script src="pages/poi/poiController.js"></script>
+    <script src="pages/categories/categoryController.js"></script>
+    <script src="pages/favorites/favoritesController.js"></script>
+    <script src="pages/home/homeController.js"></script>
+    <script src="pages/showAttraction/showAttraction.js"></script>
+
+    <style>
+        body {
+            font-size: 20px;
+            background-color: rgb(199, 240, 124);
+        }
+    </style>
+
+</head>
+
+<body ng-app="myApp">
+    <!-- pnly for now  !!!!!!!!!!!!!!!!!11-->
+    {{ $scope.username="guest"}}
+    <!-- the website -->
+    <text style="font-size: 90px;">The city of Barcelona</text>
+    <br>
+    <!-- <span ng-bind="Mainctrl.helloMsg"></span> -->
+    <!-- menu -->
+    <table style="font-size: 18px;background-color:rgb(200, 214, 173);">
+        <tr>
+            <th>
+                search for a point of view:
+                <br>
+                <input name="searchText" ng-model="searchText" required ng-minlength="1">
+                <input ng-disabled="" type="submit" id="submitSearch" value="search">
+            </th>
+            <th>
+                <span>
+                    <a href="#!">Home</a>
+                </span>
+                <span>
+                    <a href="#!about">About</a>
+                </span>
+                <span>
+                    <a href="#!categories">Categories</a>
+                </span>
+
+                <span ng-show="$scope.username=='guest'">
                     <span>
                         <a href="#!register">register</a>
                     </span>
+                </span>
+                <span ng-show="$scope.username!='guest'">
                     <span>
-                            <a href="#!favorites" ng-hide="loggedIn">your favorite attractions</a>
-                        </span>
-                </th>
-                <th>
-                    <!-- LOG IN -->
-                        username:
-                        <input name="username" ng-model="username" required ng-minlength="4">
-                        <br>
-                        password:
-                        <input type="password" name="password" ng-model="password">
-                        <br>
-                        <input ng-disabled="" type="submit" id="submitLogIn" value="submit">
-                </th>
-            </tr>
-        </table>
-           
+                        <a href="#!favorites" ng-hide="loggedIn">your favorite attractions</a>
+                    </span>
+                </span>
 
-        <!-- This section changes as the hashbang changes -->
-        <div ng-view=""></div>
-    </body>
+            </th>
+            <th>
+                hello
+                <text ng-bind="$scope.username"></text>
+            </th>
+            <th>
+                <span ng-show="$scope.username=='guest'">
+                    <!-- LOG IN -->
+                    username:
+                    <input name="username" ng-model="username" required ng-minlength="4">
+                    <br> password:
+                    <input type="password" name="password" ng-model="password">
+                    <br>
+                    <input ng-disabled="" type="submit" id="submitLogIn" value="submit">
+                </span>
+            </th>
+        </tr>
+    </table>
+
+
+    <!-- This section changes as the hashbang changes -->
+    <div ng-view=""></div>
+</body>
+
 </html>

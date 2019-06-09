@@ -1,13 +1,13 @@
 <head>
-  <!-- load angular -->
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.js"></script>
-  <script src="https://code.angularjs.org/1.7.8/angular-route.js"></script>
+    <!-- load angular -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.js"></script>
+    <script src="https://code.angularjs.org/1.7.8/angular-route.js"></script>
 
-  <!-- load app -->
-  <script src="app.js"></script>
+    <!-- load app -->
+    <script src="app.js"></script>
 
-  <!-- load controllers -->
-  <script src="categoryController.js"></script>
+    <!-- load controllers -->
+    <script src="categoryController.js"></script>
 
 
 
@@ -15,44 +15,51 @@
 </head>
 <!-- css -->
 <style>
-        .attractionStyle{
-            display: inline-block;
-            background-color:rgba(206, 233, 224, 0.562);
-            width:250px;
-            height:180px;
-            text-align: center;
-        }
-        .attractionImg {
-            height: 150px;
-            width: 200px;
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        .starImg {
-            height: 15px;
-            width: 15px;
-        }
-    </style>
+    .attractionStyle {
+        display: inline-block;
+        background-color: rgba(206, 233, 224, 0.562);
+        width: 250px;
+        height: 180px;
+        text-align: center;
+    }
+
+    .attractionImg {
+        height: 150px;
+        width: 200px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .starImg {
+        height: 15px;
+        width: 15px;
+    }
+</style>
 
 
 <!-- display all categories -->
+
 <body ng-app="myApp" ng-controller="homeCtrl">
- 
-        <h2>HERE ARE LAST SAVED </h2> 
-        <span class="attractionStyle" ng-repeat="attraction in homeCtrl.lastSaved">          
-                <div ng-bind="attraction.attractionName"></div>
-                <img class="attractionImg" ng-src=",./../{{attraction.picture}}">       
+    <span ng-show="$scope.username!='guest'">
+        <h2>HERE ARE LAST SAVED </h2>
+        <span class="attractionStyle" ng-repeat="attraction in homeCtrl.lastSaved">
+            <div ng-bind="attraction.attractionName"></div>
+            <img class="attractionImg" ng-src=",./../{{attraction.picture}}">
         </span>
-        <h2>HERE ARE RECOMMENDED </h2> 
+        <h2>HERE ARE RECOMMENDED </h2>
         <span class="attractionStyle" ng-repeat="attraction in homeCtrl.recommended">
-                <div ng-bind="attraction.attractionName"></div>
-                <img class="attractionImg" ng-src=",./../{{attraction.picture}}">              
+            <div ng-bind="attraction.attractionName"></div>
+            <img class="attractionImg" ng-src=",./../{{attraction.picture}}">
         </span>
-        <h2>HERE ARE POPULAR ATTRACTIONS </h2> 
+    </span>
+    <span ng-show="$scope.username=='guest'">
+        <h2>HERE ARE POPULAR ATTRACTIONS </h2>
         <span class="attractionStyle" ng-repeat="attraction in homeCtrl.popular">
-                 <div ng-bind="attraction.attractionName"></div>
-                 <img class="attractionImg" ng-src=",./../{{attraction.picture}}">             
+            <div ng-bind="attraction.attractionName"></div>
+            <img class="attractionImg" ng-src=",./../{{attraction.picture}}">
         </span>
+    </span>
+
 
 </body>
