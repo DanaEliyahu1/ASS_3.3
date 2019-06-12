@@ -20,6 +20,7 @@
     <script src="pages/favorites/favoritesController.js"></script>
     <script src="pages/home/homeController.js"></script>
     <script src="pages/showAttraction/showAttraction.js"></script>
+    <script src="pages/register/registerController.js"></script>
    
     <style>
         body {
@@ -48,9 +49,9 @@
             <!-- LOG IN -->
             <form name="loginform" ng-submit="login()"> 
                 username:
-                <input name="username" ng-model="username" required ng-minlength="4">
+                <input id='username' name="username" ng-model="username" required ng-minlength="4">
                 <br> password:
-                <input type="password" name="password" ng-model="password">
+                <input id='password' type="password" name="password" ng-model="password">
                 <br>
                 <input ng-disabled=""  type="submit" id="submitLogIn" value="submit">
             </form>

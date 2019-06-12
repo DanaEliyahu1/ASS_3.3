@@ -4,10 +4,27 @@
 
 
 // login controller
-angular.module("myApp")
-.controller("loginController", function ($scope,webService,$window,$http) {
+
+
+//angular.module("myApp")
+    app.controller("loginController", function ($scope,webService,$window) {
+ 
+        var username1=username.value;
+        var password1=password.value;
+       $scope.login=function(){   //$window.alert(JSON.stringify(username.value));
+      var result= webService.login(username.value,password.value).then(function(response){
+        $window.alert(response.data)
+
+
+      },function(error){$window.alert(JSON.stringify(error));
+
+      }
+      );
+       
+    }
+
    
-    $scope.login = function(){ window.alert("login");
+ /*   $scope.login = function(){ window.alert("login");
         var result=""//webService.sendReq("POST","",);
         
             var req={
@@ -36,5 +53,5 @@ angular.module("myApp")
             return false;    
         }
 
-    };
+    };*/
 });

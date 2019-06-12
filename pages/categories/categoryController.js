@@ -7,15 +7,13 @@ angular.module("myApp").controller('categoryController', function($scope, $http,
   self=this;
   self.test="hi,testing";
   var req={
-    method: 'POST',
+    method: 'GET',
     url: 'http://localhost:3000/view/getCategories',
     data:{
       
       x:'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Im5pbXJvZCIsIm5hbWUiOiJuaW1yb2QiLCJhZG1pbiI6dHJ1ZSwiaWF0IjoxNTYwMzM5NTcyLCJleHAiOjE1NjA0MjU5NzJ9.Dbm-eiSMJkIyId2npSQDN1435LMaOe4r-Ojmd2r95Mc'
 // x-auth-token
     }
-
-
 
   }
   $http(req)

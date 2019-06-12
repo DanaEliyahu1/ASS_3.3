@@ -41,6 +41,10 @@ app.config(function ($routeProvider) {
             templateUrl: 'pages/results/results.html',
             controller: 'resultsController as resultsCtrl'
         })
+        .when('/register', {
+            templateUrl: 'pages/register/register.html',
+            controller: 'registerController as registerCtrl'
+        })
 
 
         // other
