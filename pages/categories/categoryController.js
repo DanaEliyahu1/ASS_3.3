@@ -1,4 +1,4 @@
-angular.module("myApp").controller('categoryController', function($scope, $http) {
+angular.module("myApp").controller('categoryController', function($scope, $http,webService) {
  let myHeaders=new Headers();
   myHeaders.append('Content-Type','application/json');
   myHeaders.append('Accept','application/json');
@@ -6,12 +6,19 @@ angular.module("myApp").controller('categoryController', function($scope, $http)
   //let options = new RequestOptions({ headers: myHeaders });
   self=this;
   self.test="hi,testing";
-  $http.get('http://localhost:3000/view/getCategories',{},{
-    headers:myHeaders /*{
-      'Accept': 'application/json',
-      'x-auth-token':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Im5pbXJvZCIsIm5hbWUiOiJuaW1yb2QiLCJhZG1pbiI6dHJ1ZSwiaWF0IjoxNTU5OTkwMzMwLCJleHAiOjE1NjAwNzY3MzB9.pBJiKGP5fUP-MGLa-yIeoHdJofus-u_EQGoSEybZD38'
-    }*/
-  })
+  var req={
+    method: 'POST',
+    url: 'http://localhost:3000/view/getCategories',
+    data:{
+      
+      x:'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Im5pbXJvZCIsIm5hbWUiOiJuaW1yb2QiLCJhZG1pbiI6dHJ1ZSwiaWF0IjoxNTYwMzM5NTcyLCJleHAiOjE1NjA0MjU5NzJ9.Dbm-eiSMJkIyId2npSQDN1435LMaOe4r-Ojmd2r95Mc'
+// x-auth-token
+    }
+
+
+
+  }
+  $http(req)
  .then(function mySuccess(response) {
       self.test="finished Request success";
       self.categories = response.data;
@@ -22,3 +29,4 @@ angular.module("myApp").controller('categoryController', function($scope, $http)
       
   });
 }); 
+
