@@ -69,6 +69,17 @@ this.getQuestions=function(){
    
 
 }
+this.search=function(search){
+    
+    var req={
+      method: 'GET',
+      url: 'http://localhost:3000/view/getAttractionsByName/'+search
+  
+    }
+    return $http(req)
+   
+
+}
 
 
 })

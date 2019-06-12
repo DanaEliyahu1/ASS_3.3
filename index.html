@@ -14,6 +14,7 @@
 
     <script src="webService.js"></script>
     <script src="loginController.js"></script>
+    <script src="searchController.js"></script>
     <script src="pages/about/aboutController.js"></script>
     <script src="pages/poi/poiController.js"></script>
     <script src="pages/categories/categoryController.js"></script>
@@ -21,6 +22,7 @@
     <script src="pages/home/homeController.js"></script>
     <script src="pages/showAttraction/showAttraction.js"></script>
     <script src="pages/register/registerController.js"></script>
+    <script src="pages/results/resultsController.js"></script>
    
     <style>
         body {
@@ -85,8 +87,10 @@
             <th>
                 search for a point of view:
                 <br>
-                <input name="searchText" ng-model="searchText" required ng-minlength="1">
-                <input ng-disabled="" type="submit" id="submitSearch" value="search">
+                <span ng-controller="searchController">
+                <input name="searchText" id="search" ng-model="searchText" required ng-minlength="1">
+                <input ng-disabled="" ng-click="search()" type="submit" id="submitSearch" value="search">
+            </span>
             </th>
         </tr>
     </table>
