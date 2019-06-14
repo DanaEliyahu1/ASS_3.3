@@ -41,7 +41,7 @@
 <!-- display all categories -->
 
 <body ng-app="myApp" ng-controller="homeCtrl">
-    <span ng-show="$scope.username!='guest'">
+    <span ng-show="currUser!='guest'">
         <h2>HERE ARE LAST SAVED </h2>
         <span class="attractionStyle" ng-repeat="attraction in homeCtrl.lastSaved">
             <div ng-bind="attraction.attractionName"></div>
@@ -53,7 +53,7 @@
             <img class="attractionImg" ng-src=",./../{{attraction.picture}}">
         </span>
     </span>
-    <span ng-show="$scope.username=='guest'">
+    <span ng-show="currUser=='guest'">
         <h2>HERE ARE POPULAR ATTRACTIONS </h2>
         <span class="attractionStyle" ng-repeat="attraction in homeCtrl.popular">
             <div ng-bind="attraction.attractionName"></div>

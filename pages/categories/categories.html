@@ -21,15 +21,7 @@
 <h2>CATEGORIES</h2>
 <!-- display all categories -->
 <body ng-app="myApp" ng-controller="categoryCtrl">
-    <span  ng-repeat="category in categoryCtrl.categories">
-         <span ng-bind="category.categoryName"></span>       
+    <span ng-repeat="category in categoryCtrl.categories">
+         <span ng-click="categoryCtrl.getAttractionsByCategory(category.categoryName)" >{{category.categoryName}}</span> 
     </span>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    for now, delete later:
-    <br>
-    <span ng-bind="categoryCtrl.test"></span>
 </body>

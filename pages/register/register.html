@@ -1,6 +1,6 @@
 <body>
 
-    <form id="registerform" ng-submit="validInput();" method="post" enctype="text/plain">
+    <form id="registerform" ng-submit="registerCtrl.register();" method="post" enctype="text/plain">
         UserName:
         <br>
         <input type="text" id="UserName" name="UserName">
@@ -43,7 +43,7 @@
         <input type="text" id="ans2" name="ans2">
         <br> Choose two or more categories
         <span ng-repeat="Category in registerCtrl.categories">
-            <input type="checkbox" id="{{Category}}" value="{{Category}}">
+            <input type="checkbox" ng-model=registerCtrl.isChecked[$index] id="{{Category}}" value="{{Category}}">
             {{Category.categoryName}}
         </span>
 

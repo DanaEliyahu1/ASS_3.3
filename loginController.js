@@ -6,21 +6,24 @@
 // login controller
 
 
-//angular.module("myApp")
     app.controller("loginController", function ($scope,webService,$window) {
- 
-        var username1=username.value;
-        var password1=password.value;
+        self=this;
        $scope.login=function(){   //$window.alert(JSON.stringify(username.value));
-      var result= webService.login(username.value,password.value).then(function(response){
-        $window.alert(response.data)
+       var result= webService.login(username.value,password.value).then(function(response){
+        $window.sessionStorage.setItem("token",response.data);
+        $window.sessionStorage.setItem("username",username.value);
 
 
       },function(error){$window.alert(JSON.stringify(error));
 
       }
       );
-       
+       self.currUser=function(){
+           return webService.currUser();
+       }
+        
+       $scope.currUser="guest";
+
     }
 
    

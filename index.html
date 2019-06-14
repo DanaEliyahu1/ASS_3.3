@@ -33,21 +33,21 @@
 
 </head>
 
-<body ng-app="myApp">
+<body ng-app="myApp" ng-init="$window.sessionStorage.setItem('username','guest')" >
     <!-- the website -->
     <text style="font-size: 90px;">The city of Barcelona</text>
     <br>
     <!-- <span ng-bind="Mainctrl.helloMsg"></span> -->
     <!-- menu -->
-    <table style="font-size: 18px;background-color:rgb(200, 214, 173);">
+    <table ng-model="currUser" ng-controller="loginController as loginCtrl" style="font-size: 18px;background-color:rgb(200, 214, 173);">
         <tr>
         </tr>
         <th>
-            {{ $scope.username="guest"}} hello
-            <text ng-bind="$scope.username"></text>
+             hello
+            <text ng-bind="currUser">{{currUser='guest';}}</text>
         </th>
         <th>
-        <span ng-show="$scope.username=='guest'" ng-controller="loginController">
+        <span ng-show="currUser=='guest'" >
             <!-- LOG IN -->
             <form name="loginform" ng-submit="login()"> 
                 username:
@@ -55,7 +55,7 @@
                 <br> password:
                 <input id='password' type="password" name="password" ng-model="password">
                 <br>
-                <input ng-disabled=""  type="submit" id="submitLogIn" value="submit">
+                <input ng-disabled=""  type="submit" id="submitLogIn" value="LOG IN">
             </form>
         </span>
     </th>
@@ -72,12 +72,12 @@
                     <a href="#!categories">Categories</a>
                 </span>
 
-                <span ng-show="$scope.username=='guest'">
+                <span ng-show="currUser=='guest'">
                     <span>
                         <a href="#!register">register</a>
                     </span>
                 </span>
-                <span ng-show="$scope.username!='guest'">
+                <span ng-show="currUser!='guest'">
                     <span>
                         <a href="#!favorites" ng-hide="loggedIn">your favorite attractions</a>
                     </span>
