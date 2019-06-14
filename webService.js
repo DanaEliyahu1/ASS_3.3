@@ -31,21 +31,16 @@ this.login=function(username,password){
     var req={
         method: 'POST',
         url: 'http://localhost:3000/private/login',
-        data: {
-            username :username, password :password}
+        data:{"username" :username, "password" :password},
+        headers :{'Content-Type':'application/x-www-form-urlencoded'} 
     };
-   /* return $http({
-        method: 'POST',
-        url: 'http://localhost:3000/private/login',
-        data:{
-            "username":username, "password":password}
-    });*/
+    return $http(req);
 
-    return $http.post('http://localhost:3000/private/login',{
+    /*return $http.post('http://localhost:3000/private/register',{
         
 "username":username, "password":password
     }
-);
+);*/
 }
 this.getCategories=function(){
     
