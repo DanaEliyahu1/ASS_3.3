@@ -7,7 +7,7 @@
     <script src="app.js"></script>
 
     <!-- load controllers -->
-    <script src="categoryController.js"></script>
+    <script src="resultsController.js"></script>
 
 
 
@@ -45,11 +45,12 @@
 <h2>HERE ARE THE POINTS OF VIEW YOU WERE LOOKING FOR </h2>
 <br>
 
-<body ng-app="myApp" ng-controller="favoritesCtrl">
-
-    <span class="attractionStyle" ng-repeat="attraction in resultsCtrl.results">
+<body ng-app="myApp" ng-controller="resultsCtrl">
+    <span class="attractionStyle" ng-repeat="attraction in resultsCtrl.results track by $index">
+       <span ng-click= "resultsCtrl.webService.showAttraction(attraction.attractionName)">
+    <!--  <span ng-click= "resultsCtrl.a(attraction.attractionName)">-->
         <div ng-bind="attraction.attractionName"></div>
         <img class="attractionImg" ng-src=",./../{{attraction.picture}}">
-        <br>
+    </span>
     </span>
 </body>

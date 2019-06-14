@@ -6,13 +6,13 @@
 app.controller("searchController", function ($scope, webService, $window) {
     $scope.search = function () {   //$window.alert(JSON.stringify(username.value));
         webService.search(search.value).then(function (response) {
-            $window.alert(response.data);
+           // $window.alert(response.data);
             var result = response.data;
-            $window.sessionStorage.setItem("search",result);
+            $window.sessionStorage.setItem("search",JSON.stringify(result));
             $window.location="#!results";
 
         }, function (error) {
-            $window.alert(JSON.stringify(error));
+        
             var result = response.statusText;
         }
         );

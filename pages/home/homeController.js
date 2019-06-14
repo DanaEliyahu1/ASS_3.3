@@ -1,6 +1,6 @@
 
 
-angular.module("myApp").controller('homeController',function($scope, $http,webService) {
+angular.module("myApp").controller('homeController',function($scope, $http,webService,$window) {
   self=this;
   //self.popular=webService.sendReq("GET","view/getRandomPopularAttractions","");
   //window.alert(JSON.stringify(webService.sendReq("GET","view/getRandomPopularAttractions","")));
@@ -36,6 +36,7 @@ angular.module("myApp").controller('homeController',function($scope, $http,webSe
   })
  .then(function mySuccess(response) {
       self.popular = response.data;
+
       
     }, function myError(response) {
       self.popular = response.statusText;

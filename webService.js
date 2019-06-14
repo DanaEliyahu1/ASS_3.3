@@ -26,7 +26,7 @@ app.service("webService", function($http){
 
 });
 */
-angular.module("myApp").service("webService",function($http){
+angular.module("myApp").service("webService",function($http,$window){
 this.login=function(username,password){
     var req={
         method: 'POST',
@@ -71,10 +71,14 @@ this.search=function(search){
       url: 'http://localhost:3000/view/getAttractionsByName/'+search
   
     }
-    return $http(req)
-   
-
+    return $http(req)  
 }
 
+this.showAttraction=function(attractionName){
 
+    $window.location="#!showAttraction";
+    $window.sessionStorage.setItem("attraction",attractionName) ;
+    //$window.alert(attractionName);
+
+}
 })

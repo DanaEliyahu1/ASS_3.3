@@ -1,5 +1,14 @@
-angular.module("myApp").controller('resultsController', function ($scope, $http,$window) {
+
+
+
+
+
+angular.module("myApp").controller('resultsController', function ($scope, $http,$window,webService) {
   self=this;
-  self.results=$window.sessionStorage.getItem("search");
+  self.webService= webService;
+  self.results=JSON.parse($window.sessionStorage.getItem("search"));
+
+
+
 
 }); 
