@@ -19,11 +19,17 @@ angular.module("myApp").controller('showAttractionController', function ($scope,
 
   self.addFavorite = function (attractionName,picture) {
     webService.addFavorite(attractionName,picture);
+    self.isFavorite= webService.isFavorite(self.attractionName); 
   }
 
   self.removeFavorite = function (attractionName) {
     webService.removeFavorite(attractionName);
+    self.isFavorite= webService.isFavorite(self.attractionName); 
   }
+ if($window.sessionStorage.getItem("username")!="guest"){
+    self.isFavorite= webService.isFavorite(self.attractionName);
+ }
+
   /*
   $scope.saveAttraction = function(name) {
     //if name in attraction ok

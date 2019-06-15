@@ -14,7 +14,6 @@
 
     <script src="webService.js"></script>
     <script src="loginController.js"></script>
-    <script src="addFavoriteController.js"></script>
     <script src="searchController.js"></script>
     <script src="pages/about/aboutController.js"></script>
     <script src="pages/poi/poiController.js"></script>
@@ -33,6 +32,7 @@
         }
     </style>
 
+
 </head>
 
 <body ng-app="myApp" ng-init="$window.sessionStorage.setItem('username','guest')" >
@@ -46,7 +46,7 @@
         </tr>
         <th>
              hello
-            <text ng-bind="currUser">{{currUser='guest';}}</text>
+            <text ng-model="currUser">{{currUser}}</text>
         </th>
         <th>
         <span ng-show="currUser=='guest'" >
@@ -59,6 +59,11 @@
                 <br>
                 <input ng-disabled=""  type="submit" id="submitLogIn" value="LOG IN">
             </form>
+        </span>
+    </th>
+    <th>
+        <span ng-show="currUser!='guest'">
+                <input ng-disabled="" ng-click="loginCtrl.logOut()" type="submit" id="submitLogOut" value="LOG OUT">
         </span>
     </th>
         <tr>
@@ -81,7 +86,7 @@
                 </span>
                 <span ng-show="true">
                     <span>
-                        <a href="#!favorites" ng-hide="loggedIn">your favorite attractions</a>
+                        <a href="#!favorites" ng-show="currUser!='guest'">your favorite attractions</a>
                     </span>
                 </span>
 

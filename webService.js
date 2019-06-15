@@ -153,7 +153,21 @@ angular.module("myApp").service("webService", function ($http, $window) {
             url: 'http://localhost:3000/update/updateMyAttractionSort/'+attractions+'/'+rank
         }
         return $http(req);
+
     }
+    this.isFavorite=function(attractionName){
+        var currList = JSON.parse($window.sessionStorage.getItem("favorites"));
+        for(var i=0;i<currList.length;i++){
+            if(currList[i] !=undefined && currList[i].attractionName==attractionName){
+                return true;
+            }
+
+        }
+        return false;
+    }
+
+
+
     this.addFavorite = function (attractionName,picture) {
         var currList = JSON.parse($window.sessionStorage.getItem("favorites"));
         var size = currList.length;
@@ -169,19 +183,26 @@ angular.module("myApp").service("webService", function ($http, $window) {
         var currList = JSON.parse($window.sessionStorage.getItem("favorites"));
         var currRank = -1;
         for (var i = 0; i < currList.length; i++) {
-            if (currList[i].attractionName == attractionName) {
+            if (currList[i] !=undefined && currList[i].attractionName == attractionName) {
                 currRank = currList[i].rank;
                 delete currList[i];
                 break;
             }
 
         }
+        var newCurrList=[];
         for (var i = 0; i < currList.length; i++) {
-            if (currList[i].rank > currRank) {
-                currList[i].rank = currList[i] - 1;
-            }
+            if (currList[i] !=undefined){
+                if(currList[i].rank > currRank) {
+                    currList[i].rank = currList[i] - 1;
+                    newCurrList.push(currList[i]);
+                }
+                else{
+                    newCurrList.push(currList[i]);
+                }
+            } 
         }
-        $window.sessionStorage.setItem("favorites", JSON.stringify(currList));
+        $window.sessionStorage.setItem("favorites", JSON.stringify(newCurrList));
     }
 
 })

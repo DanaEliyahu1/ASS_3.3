@@ -39,8 +39,11 @@
     <p>
          <b>RATING: <text ng-bind="showAttractionCtrl.currAttraction[0].rating"></text></b>
     </p>
-    <p  ng-click="showAttractionCtrl.addFavorite(showAttractionCtrl.currAttraction[0].attractionName,showAttractionCtrl.currAttraction[0].picture)">
+    <p  ng-model="showAttractionCtrl.isFavorite" ng-show="(!(showAttractionCtrl.isFavorite))&&(currUser!='guest')" ng-click="showAttractionCtrl.addFavorite(showAttractionCtrl.currAttraction[0].attractionName,showAttractionCtrl.currAttraction[0].picture)">
         LIKE IT? SAVE IT <img class="starImg" ng-src=",./../resources/star.png"> 
+    </p>
+    <p ng-model="showAttractionCtrl.isFavorite" ng-show="showAttractionCtrl.isFavorite&&(currUser!='guest')" ng-click="showAttractionCtrl.removeFavorite(showAttractionCtrl.currAttraction[0].attractionName,showAttractionCtrl.currAttraction[0].picture)">
+        REMOVE FROM FAVORITES <img class="starImg" ng-src=",./../resources/unstar.png">
     </p>
     <img class="attractionImg" ng-src=",./../{{showAttractionCtrl.currAttraction[0].picture}}"> 
      <p>
