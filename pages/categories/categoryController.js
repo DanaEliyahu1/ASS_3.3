@@ -4,7 +4,7 @@
 
 
 
-angular.module("myApp").controller('categoryController', function($scope, $http,webService) {
+angular.module("myApp").controller('categoryController', function($scope, $window,webService) {
   self=this;
   webService.getCategories().then(function (response) {
     // $window.alert(response.data);
@@ -19,7 +19,7 @@ angular.module("myApp").controller('categoryController', function($scope, $http,
   webService.getAttractionsByCategory(categoryName).then(function (response) {
       // $window.alert(response.data);
        var result = response.data;
-       $window.alert(categoryName);
+     ///  $window.alert(categoryName);
        $window.sessionStorage.setItem("search",JSON.stringify(result));
        $window.location="#!results";
 
@@ -30,9 +30,6 @@ angular.module("myApp").controller('categoryController', function($scope, $http,
    );
 
   }
-  self.a=function(){
-    $window.alert()
-  }
-  
+ 
 }); 
 

@@ -7,7 +7,7 @@
     <script src="app.js"></script>
 
     <!-- load controllers -->
-    <script src="categoryController.js"></script>
+    <script src="favoritesController.js"></script>
 
 
 
@@ -41,14 +41,14 @@
         font-size: 24px;
     }
 </style>
-
+<body ng-app="myApp" ng-controller="favoritesCtrl">
 <h2>YOUR CURRENT SAVED POINTS OF VIEW </h2>
 <br>
-<input class="saveList" ng-click="saveList()" ng-disabled="" type="submit" id="submitSaveList" value="save your favorite attractions list!">
+<input class="saveList" ng-click="favoritesCtrl.saveAttractions()" ng-disabled="" type="submit" id="submitSaveList" value="save your favorite attractions list!">
 <br>
 <!-- display all categories -->
 
-<body ng-app="myApp" ng-controller="favoritesCtrl">
+
 
     <span class="attractionStyle" ng-repeat="attraction in favoritesCtrl.favorites">
         <div ng-bind="attraction.attractionName"></div>
