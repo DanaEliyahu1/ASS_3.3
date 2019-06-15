@@ -214,7 +214,22 @@ angular.module("myApp").service("webService", function ($http, $window, $rootSco
             method:"GET",
             url: 'http://localhost:3000/view/getLastReviews/' + self.attractionName
         }
-        $window.alert(attractionName);
+        return $http(req);
+    }
+
+    this.addRating=function(rating,review,date,attractionName){
+        var req={
+            method:"POST",
+            url:'http://localhost:3000/update/addRating',
+            data: JSON.stringify({
+                "token": $window.sessionStorage.getItem("token"),
+                "rating": rating,
+                "review": review,
+                "date": date,
+                "attractionName": attractionName 
+            }),
+            headers: { 'Content-Type': 'application/json' }
+        }
         return $http(req);
     }
     

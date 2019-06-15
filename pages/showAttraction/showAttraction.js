@@ -37,6 +37,18 @@ angular.module("myApp").controller('showAttractionController', function ($scope,
 
  });
 
+ self.addRating=function(){
+  var today = new Date();
+  var dd = String(today.getDate()).padStart(2, '0');
+  var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+  var yyyy = today.getFullYear();
+  
+  today = yyyy + '-' +mm+ '-' + dd  ;
+   webService.addRating(rating.value , userReview.value,today,self.attractionName);
+   $window.alert(userReview.value);
+   $window.alert("Your review was sent");
+ }
+
  
 
 
