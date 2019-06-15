@@ -49,4 +49,15 @@
      <p>
         VIEWS: <text ng-bind="showAttractionCtrl.currAttraction[0].views"></text>
      </p>
+     <h2>REVIEWS:</h2>
+     <span  ng-repeat="review in showAttractionCtrl.reviews" >
+        <span style="border:2px solid rgb(245, 247, 238); background-color: gray; " >
+            {{review.username}}, rating:
+        {{review.rating}}
+          <br>
+        {{review.review}}
+         <br>
+        </span>
+        
+     </span>
 </body>

@@ -6,9 +6,7 @@ angular.module("myApp").controller('showAttractionController', function ($scope,
   self = this;
   self.attractionName = $window.sessionStorage.getItem("attraction");
 
-  $http.get('http://localhost:3000/view/viewAttraction/' + self.attractionName, {}, {
-
-  })
+    webService.viewAttraction(self.attractionName)
     .then(function mySuccess(response) {
       self.currAttraction = response.data;
 
@@ -29,19 +27,17 @@ angular.module("myApp").controller('showAttractionController', function ($scope,
  if($window.sessionStorage.getItem("username")!="guest"){
     self.isFavorite= webService.isFavorite(self.attractionName);
  }
+ webService.getLastReviews(self.attractionName)
+ .then(function mySuccess(response) {
+   self.reviews = response.data;
 
-  /*
-  $scope.saveAttraction = function(name) {
-    //if name in attraction ok
-  //if name not in attractions add.
-  }
 
-self.openAttraction=function(attractionName){
-  webService.showAttraction(attractionName);
+ }, function myError(response) {
+  self.reviews = response.data;
 
-}
+ });
 
-*/
+ 
 
 
 });

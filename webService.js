@@ -200,10 +200,23 @@ angular.module("myApp").service("webService", function ($http, $window, $rootSco
         return $http(req);
     }
 
-}
+    
+    this.viewAttraction=function(attractionName){
+        var req={
+            method:"GET",
+            url: 'http://localhost:3000/view/viewAttraction/' + self.attractionName
+        }
+        return $http(req);
+    }
 
+    this.getLastReviews=function(attractionName){
+        var req={
+            method:"GET",
+            url: 'http://localhost:3000/view/getLastReviews/' + self.attractionName
+        }
+        $window.alert(attractionName);
+        return $http(req);
+    }
+    
 
-
-
-
-)
+})

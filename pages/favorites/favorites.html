@@ -51,8 +51,10 @@
 <!-- display all categories -->
 
 
-
-<span class="attractionStyle" ng-repeat="attraction in favoritesCtrl.favorites track by $index {{order}}">
+<br>
+<br>
+<span class="attractionStyle" ng-repeat='attraction in favoritesCtrl.favorites | orderBy : favoritesCtrl.condition' >
+    
         <span>
             <span ng-click="favoritesCtrl.webService.showAttraction(attraction.attractionName)">
                 <div ng-bind="attraction.attractionName"></div>
