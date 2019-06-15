@@ -1,45 +1,75 @@
 
+angular.module("myApp").controller('homeController', function ($scope, $http, webService, $window) {
+  self = this;
 
-angular.module("myApp").controller('homeController',function($scope, $http,webService,$window) {
-  self=this;
-  //self.popular=webService.sendReq("GET","view/getRandomPopularAttractions","");
-  //window.alert(JSON.stringify(webService.sendReq("GET","view/getRandomPopularAttractions","")));
-  
-  $http.get('http://localhost:3000/view/getLastAttractions',{},{
-    /*headers:myHeaders {
-      'Accept': 'application/json',
-      'x-auth-token':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Im5pbXJvZCIsIm5hbWUiOiJuaW1yb2QiLCJhZG1pbiI6dHJ1ZSwiaWF0IjoxNTU5OTkwMzMwLCJleHAiOjE1NjAwNzY3MzB9.pBJiKGP5fUP-MGLa-yIeoHdJofus-u_EQGoSEybZD38'
-    }*/
-  })
- .then(function mySuccess(response) {
+
+  webService.getLastAttractions()
+    .then(function mySuccess(response) {
       self.lastSaved = response.data;
-      
+      if ($window.sessionStorage.getItem("username") != "guest") { 
+        for (var i = 0; i < self.lastSaved.length; i++) {
+          self.lastSaved[i].isFavorite = webService.isFavorite(self.lastSaved[i].attractionName);
+        }
+  
+      }
     }, function myError(response) {
       self.lastSaved = response.statusText;
-      
-  });
-  $http.get('http://localhost:3000/view/getMostPopularAttractionForUser',{},{
-     /*headers:myHeaders{
-      'Accept': 'application/json',
-      'x-auth-token':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Im5pbXJvZCIsIm5hbWUiOiJuaW1yb2QiLCJhZG1pbiI6dHJ1ZSwiaWF0IjoxNTU5OTkwMzMwLCJleHAiOjE1NjAwNzY3MzB9.pBJiKGP5fUP-MGLa-yIeoHdJofus-u_EQGoSEybZD38'
-    }*/
-  })
- .then(function mySuccess(response) {
+
+    });
+
+  webService.getRecommendedAttractions()
+    .then(function mySuccess(response) {
       self.recommended = response.data;
-      
+      if ($window.sessionStorage.getItem("username") != "guest") {
+       
+
+        for (var i = 0; i < self.recommended.length; i++) {
+          self.recommended[i].isFavorite = webService.isFavorite(self.recommended[i].attractionName);
+        }
+      }
     }, function myError(response) {
       self.recommended = response.statusText;
-      
-  });
-  $http.get('http://localhost:3000/view/getRandomPopularAttractions',{},{
-   
-  })
- .then(function mySuccess(response) {
+
+    });
+
+  webService.getPopularAttractions()
+    .then(function mySuccess(response) {
       self.popular = response.data;
 
-      
+
     }, function myError(response) {
       self.popular = response.statusText;
-      
-  });
+
+    });
+
+  self.webService = webService;
+  
+  self.addFavorite = function (attractionName, picture) {
+    webService.addFavorite(attractionName, picture);
+    for (var i = 0; i < self.lastSaved.length; i++) {
+      if (self.lastSaved[i].attractionName == attractionName) {
+        self.lastSaved[i].isFavorite = true;
+      }
+    }
+    for (var i = 0; i < self.recommended.length; i++) {
+      if (self.recommended[i].attractionName == attractionName) {
+        self.recommended[i].isFavorite = true;
+      }
+    }
+  }
+
+  self.removeFavorite = function (attractionName) {
+    webService.removeFavorite(attractionName);
+    for (var i = 0; i < self.lastSaved.length; i++) {
+      if (self.lastSaved[i].attractionName == attractionName) {
+        self.lastSaved[i].isFavorite = false;
+      }
+    }
+    for (var i = 0; i < self.recommended.length; i++) {
+      if (self.recommended[i].attractionName == attractionName) {
+        self.recommended[i].isFavorite = false;
+      }
+    }
+
+  }
 }); 

@@ -1,32 +1,7 @@
 
 
 
-//angular.module("myApp");
-/*
-app.service("webService", function($http){
-    this.sendReq=function(method,url,dataWeb){
-        var req={
-            method: method,
-            url: 'http://localhost:3000/'+ url,
-            data:dataWeb
-              
-          }
-          var result=
-          $http(req)
-         .then(function mySuccess(response) {
-             window.alert(response.data);
-            result= response.data;
-              
-            }, function myError(response) {
-                window.alert(response.statusText);
-                result= response.statusText;         
-          });
-          return result;
-    }
-
-});
-*/
-angular.module("myApp").service("webService", function ($http, $window) {
+angular.module("myApp").service("webService", function ($http, $window, $rootScope) {
     this.login = function (username, password) {
         var req = {
             method: 'POST',
@@ -39,11 +14,7 @@ angular.module("myApp").service("webService", function ($http, $window) {
         };
         return $http(req);
 
-        /*return $http.post('http://localhost:3000/private/register',{
-            
-    "username":username, "password":password
-        }
-    );*/
+
     }
     this.getCategories = function () {
 
@@ -150,15 +121,15 @@ angular.module("myApp").service("webService", function ($http, $window) {
         var req = {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
-            url: 'http://localhost:3000/update/updateMyAttractionSort/'+attractions+'/'+rank
+            url: 'http://localhost:3000/update/updateMyAttractionSort/' + attractions + '/' + rank
         }
         return $http(req);
 
     }
-    this.isFavorite=function(attractionName){
+    this.isFavorite = function (attractionName) {
         var currList = JSON.parse($window.sessionStorage.getItem("favorites"));
-        for(var i=0;i<currList.length;i++){
-            if(currList[i] !=undefined && currList[i].attractionName==attractionName){
+        for (var i = 0; i < currList.length; i++) {
+            if (currList[i] != undefined && currList[i].attractionName == attractionName) {
                 return true;
             }
 
@@ -168,41 +139,71 @@ angular.module("myApp").service("webService", function ($http, $window) {
 
 
 
-    this.addFavorite = function (attractionName,picture) {
+    this.addFavorite = function (attractionName, picture) {
         var currList = JSON.parse($window.sessionStorage.getItem("favorites"));
         var size = currList.length;
         var newFavorite = new Object();
         newFavorite.attractionName = attractionName;
         newFavorite.rank = size + 1;
-        newFavorite.picture=picture;
+        newFavorite.picture = picture;
         currList.push(newFavorite);
         $window.sessionStorage.setItem("favorites", JSON.stringify(currList));
         $window.alert("attraction added");
+        $rootScope.favoriteCount = currList.length;
     }
     this.removeFavorite = function (attractionName) {
         var currList = JSON.parse($window.sessionStorage.getItem("favorites"));
         var currRank = -1;
         for (var i = 0; i < currList.length; i++) {
-            if (currList[i] !=undefined && currList[i].attractionName == attractionName) {
+            if (currList[i] != undefined && currList[i].attractionName == attractionName) {
                 currRank = currList[i].rank;
                 delete currList[i];
                 break;
             }
 
         }
-        var newCurrList=[];
+        var newCurrList = [];
         for (var i = 0; i < currList.length; i++) {
-            if (currList[i] !=undefined){
-                if(currList[i].rank > currRank) {
+            if (currList[i] != undefined) {
+                if (currList[i].rank > currRank) {
                     currList[i].rank = currList[i] - 1;
                     newCurrList.push(currList[i]);
                 }
-                else{
+                else {
                     newCurrList.push(currList[i]);
                 }
-            } 
+            }
         }
         $window.sessionStorage.setItem("favorites", JSON.stringify(newCurrList));
+        $rootScope.favoriteCount = newCurrList.length;
     }
 
-})
+    this.getLastAttractions = function () {
+        var req = {
+            method: "GET",
+            url: 'http://localhost:3000/view/getLastAttractions'
+        }
+        return $http(req);
+    }
+    this.getRecommendedAttractions = function () {
+        var req = {
+            method: "GET",
+            url: "http://localhost:3000/view/getMostPopularAttractionForUser"
+        }
+        return $http(req);
+    }
+    this.getPopularAttractions = function () {
+        var req = {
+            method: "GET",
+            url: 'http://localhost:3000/view/getRandomPopularAttractions'
+        }
+        return $http(req);
+    }
+
+}
+
+
+
+
+
+)

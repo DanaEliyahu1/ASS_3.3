@@ -19,7 +19,7 @@
         display: inline-block;
         background-color: rgba(206, 233, 224, 0.562);
         width: 250px;
-        height: 180px;
+        height: 250px;
         text-align: center;
     }
 
@@ -46,13 +46,28 @@
 <br>
 <input class="saveList" ng-click="favoritesCtrl.saveAttractions()" ng-disabled="" type="submit" id="submitSaveList" value="save your favorite attractions list!">
 <br>
+<input class="saveList" ng-click="favoritesCtrl.orderByCategory()" ng-disabled="" type="submit" id="submitSaveList" value="order by category">
+<input class="saveList" ng-click="favoritesCtrl.orderByRating()" ng-disabled="" type="submit" id="submitSaveList" value="order by rating">
 <!-- display all categories -->
 
 
 
-    <span class="attractionStyle" ng-repeat="attraction in favoritesCtrl.favorites">
-        <div ng-bind="attraction.attractionName"></div>
-        <img class="attractionImg" ng-src=",./../{{attraction.picture}}">
-        <br>
+<span class="attractionStyle" ng-repeat="attraction in favoritesCtrl.favorites track by $index {{order}}">
+        <span>
+            <span ng-click="favoritesCtrl.webService.showAttraction(attraction.attractionName)">
+                <div ng-bind="attraction.attractionName"></div>
+                <img class="attractionImg" ng-src=",./../{{attraction.picture}}">
+            </span>
+            <!--  <span ng-click= "resultsCtrl.a(attraction.attractionName)">-->
+
+            <p ng-model="attraction.isFavorite" ng-show="(!(attraction.isFavorite))&&(currUser!='guest')"
+                ng-click="favoritesCtrl.addFavorite(attraction.attractionName,attraction.picture)">
+                LIKE IT? SAVE IT <img class="starImg" ng-src=",./../resources/star.png">
+            </p>
+            <p ng-model="attraction.isFavorite" ng-show="attraction.isFavorite&&(currUser!='guest')"
+                ng-click="favoritesCtrl.removeFavorite(attraction.attractionName,attraction.picture)">
+                UNSAVE IT <img class="starImg" ng-src=",./../resources/unstar.png">
+            </p>
+        </span>
     </span>
 </body>

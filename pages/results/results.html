@@ -19,7 +19,7 @@
         display: inline-block;
         background-color: rgba(206, 233, 224, 0.562);
         width: 250px;
-        height: 180px;
+        height: 250px;
         text-align: center;
     }
 
@@ -32,8 +32,8 @@
     }
 
     .starImg {
-        height: 15px;
-        width: 15px;
+        height: 30px;
+        width: 30px;
     }
 
     .saveList {
@@ -47,10 +47,21 @@
 
 <body ng-app="myApp" ng-controller="resultsCtrl">
     <span class="attractionStyle" ng-repeat="attraction in resultsCtrl.results track by $index">
-       <span ng-click= "resultsCtrl.webService.showAttraction(attraction.attractionName)">
-    <!--  <span ng-click= "resultsCtrl.a(attraction.attractionName)">-->
-        <div ng-bind="attraction.attractionName"></div>
-        <img class="attractionImg" ng-src=",./../{{attraction.picture}}">
-    </span>
+        <span>
+            <span ng-click="resultsCtrl.webService.showAttraction(attraction.attractionName)">
+                <div ng-bind="attraction.attractionName"></div>
+                <img class="attractionImg" ng-src=",./../{{attraction.picture}}">
+            </span>
+            <!--  <span ng-click= "resultsCtrl.a(attraction.attractionName)">-->
+
+            <p ng-model="attraction.isFavorite" ng-show="(!(attraction.isFavorite))&&(currUser!='guest')"
+                ng-click="resultsCtrl.addFavorite(attraction.attractionName,attraction.picture)">
+                LIKE IT? SAVE IT <img class="starImg" ng-src=",./../resources/star.png">
+            </p>
+            <p ng-model="attraction.isFavorite" ng-show="attraction.isFavorite&&(currUser!='guest')"
+                ng-click="resultsCtrl.removeFavorite(attraction.attractionName,attraction.picture)">
+                UNSAVE IT <img class="starImg" ng-src=",./../resources/unstar.png">
+            </p>
+        </span>
     </span>
 </body>

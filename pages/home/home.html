@@ -19,7 +19,7 @@
         display: inline-block;
         background-color: rgba(206, 233, 224, 0.562);
         width: 250px;
-        height: 180px;
+        height: 250px;
         text-align: center;
     }
 
@@ -43,21 +43,67 @@
 <body ng-app="myApp" ng-controller="homeCtrl">
     <span ng-show="currUser!='guest'">
         <h2>HERE ARE LAST SAVED </h2>
-        <span class="attractionStyle" ng-repeat="attraction in homeCtrl.lastSaved">
-            <div ng-bind="attraction.attractionName"></div>
-            <img class="attractionImg" ng-src=",./../{{attraction.picture}}">
+        <span class="attractionStyle" ng-repeat="attraction in homeCtrl.lastSaved track by $index">
+            <span>
+                <span ng-click="homeCtrl.webService.showAttraction(attraction.attractionName)">
+                    <div ng-bind="attraction.attractionName"></div>
+                    <img class="attractionImg" ng-src=",./../{{attraction.picture}}">
+                </span>
+                <!--  <span ng-click= "resultsCtrl.a(attraction.attractionName)">-->
+
+                <p ng-model="attraction.isFavorite" ng-show="(!(attraction.isFavorite))&&(currUser!='guest')"
+                    ng-click="homeCtrl.addFavorite(attraction.attractionName,attraction.picture)">
+                    LIKE IT? SAVE IT <img class="starImg" ng-src=",./../resources/star.png">
+                </p>
+                <p ng-model="attraction.isFavorite" ng-show="attraction.isFavorite&&(currUser!='guest')"
+                    ng-click="homeCtrl.removeFavorite(attraction.attractionName,attraction.picture)">
+                    UNSAVE IT <img class="starImg" ng-src=",./../resources/unstar.png">
+                </p>
+            </span>
         </span>
+        <br>
+        <br>
         <h2>HERE ARE RECOMMENDED </h2>
-        <span class="attractionStyle" ng-repeat="attraction in homeCtrl.recommended">
-            <div ng-bind="attraction.attractionName"></div>
-            <img class="attractionImg" ng-src=",./../{{attraction.picture}}">
+        <span class="attractionStyle" ng-repeat="attraction in homeCtrl.recommended track by $index">
+            <span>
+                <span ng-click="homeCtrl.webService.showAttraction(attraction.attractionName)">
+                    <div ng-bind="attraction.attractionName"></div>
+                    <img class="attractionImg" ng-src=",./../{{attraction.picture}}">
+                </span>
+                <!--  <span ng-click= "resultsCtrl.a(attraction.attractionName)">-->
+
+                <p ng-model="attraction.isFavorite" ng-show="(!(attraction.isFavorite))&&(currUser!='guest')"
+                    ng-click="homeCtrl.addFavorite(attraction.attractionName,attraction.picture)">
+                    LIKE IT? SAVE IT <img class="starImg" ng-src=",./../resources/star.png">
+                </p>
+                <p ng-model="attraction.isFavorite" ng-show="attraction.isFavorite&&(currUser!='guest')"
+                    ng-click="homeCtrl.removeFavorite(attraction.attractionName,attraction.picture)">
+                    UNSAVE IT <img class="starImg" ng-src=",./../resources/unstar.png">
+                </p>
+            </span>
         </span>
+
     </span>
+
     <span ng-show="currUser=='guest'">
         <h2>HERE ARE POPULAR ATTRACTIONS </h2>
-        <span class="attractionStyle" ng-repeat="attraction in homeCtrl.popular">
-            <div ng-bind="attraction.attractionName"></div>
-            <img class="attractionImg" ng-src=",./../{{attraction.picture}}">
+        <span class="attractionStyle" ng-repeat="attraction in homeCtrl.popular track by $index">
+            <span>
+                <span ng-click="homeCtrl.webService.showAttraction(attraction.attractionName)">
+                    <div ng-bind="attraction.attractionName"></div>
+                    <img class="attractionImg" ng-src=",./../{{attraction.picture}}">
+                </span>
+                <!--  <span ng-click= "resultsCtrl.a(attraction.attractionName)">-->
+
+                <p ng-model="attraction.isFavorite" ng-show="(!(attraction.isFavorite))&&(currUser!='guest')"
+                    ng-click="homeCtrl.addFavorite(attraction.attractionName,attraction.picture)">
+                    LIKE IT? SAVE IT <img class="starImg" ng-src=",./../resources/star.png">
+                </p>
+                <p ng-model="attraction.isFavorite" ng-show="attraction.isFavorite&&(currUser!='guest')"
+                    ng-click="homeCtrl.removeFavorite(attraction.attractionName,attraction.picture)">
+                    UNSAVE IT <img class="starImg" ng-src=",./../resources/unstar.png">
+                </p>
+            </span>
         </span>
     </span>
 

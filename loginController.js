@@ -15,11 +15,12 @@ app.controller("loginController", function ($scope, webService, $window, $rootSc
             $window.sessionStorage.setItem("token", response.data);
             $window.sessionStorage.setItem("username", username.value);
             $rootScope.currUser = username.value;
+            $window.location="#!home";
             //self.getMyFavoriteAttractions();
             webService.getFavoriteAttractions()
                 .then(function mySuccess(response) {
                     $window.sessionStorage.setItem("favorites", JSON.stringify(response.data));
-
+                    $rootScope.favoriteCount=response.data.length;
                 }, function myError(response) {
                     self.favorites = response.data;
 
