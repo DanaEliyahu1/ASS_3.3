@@ -41,11 +41,14 @@
         font-size: 24px;
     }
 </style>
-
+<body ng-app="myApp" ng-controller="resultsCtrl">
+    <span ng-show="resultsCtrl.results.length!=0">
 <h2>HERE ARE THE POINTS OF VIEW YOU WERE LOOKING FOR </h2>
 <br>
-
-<body ng-app="myApp" ng-controller="resultsCtrl">
+</span>
+<span ng-show="resultsCtrl.results.length==0">
+Sorry,Try Another Term 
+</span>
     <span class="attractionStyle" ng-repeat="attraction in resultsCtrl.results track by $index">
         <span>
             <span ng-click="resultsCtrl.webService.showAttraction(attraction.attractionName)">
