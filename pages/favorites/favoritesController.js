@@ -52,7 +52,10 @@ angular.module("myApp").controller('favoritesController', function ($window, web
 
 
   self.orderByCategory=function(){
-    self.favorites=webService.orderByCategory(self.favorites);
+    for (var i=0;i<self.favorites.length;i++){
+      webService.getCategoryToFavorites(self.favorites,i);
+    }
+    self.condition="+category";
   }
 
 

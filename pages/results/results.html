@@ -49,14 +49,17 @@
 <span ng-show="resultsCtrl.results.length==0">
 Sorry,Try Another Term 
 </span>
-    <span class="attractionStyle" ng-repeat="attraction in resultsCtrl.results track by $index">
+<input class="saveList" ng-click="resultsCtrl.orderByRating()" ng-disabled="" type="submit" id="submitSaveList" value="order by rating">
+<br>   
+<br>
+
+<span class="attractionStyle" ng-repeat="attraction in resultsCtrl.results | orderBy : resultsCtrl.condition">
         <span>
             <span ng-click="resultsCtrl.webService.showAttraction(attraction.attractionName)">
                 <div ng-bind="attraction.attractionName"></div>
                 <img class="attractionImg" ng-src=",./../{{attraction.picture}}">
             </span>
-            <!--  <span ng-click= "resultsCtrl.a(attraction.attractionName)">-->
-
+       
             <p ng-model="attraction.isFavorite" ng-show="(!(attraction.isFavorite))&&(currUser!='guest')"
                 ng-click="resultsCtrl.addFavorite(attraction.attractionName,attraction.picture)">
                 LIKE IT? SAVE IT <img class="starImg" ng-src=",./../resources/star.png">

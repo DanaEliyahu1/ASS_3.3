@@ -264,7 +264,7 @@ angular.module("myApp").service("webService", function ($http, $window, $rootSco
         }
          $http(req).then(function mySuccess(response) {
             
-             $window.alert(JSON.stringify(response.data));
+ 
             favorites[i].rating=response.data[0].rating;
       
           }, function myError(response) {
@@ -274,5 +274,21 @@ angular.module("myApp").service("webService", function ($http, $window, $rootSco
       
 
     }
+    this.getCategoryToFavorites=function(favorites,i){
+        var req={
+            method:"GET",
+            url: 'http://localhost:3000/view/viewAttraction/' + favorites[i].attractionName
+        }
+         $http(req).then(function mySuccess(response) {
+            
 
+            favorites[i].category=response.data[0].category;
+      
+          }, function myError(response) {
+            $window.alert(response.data);
+      
+          });
+      
+
+    }
 })

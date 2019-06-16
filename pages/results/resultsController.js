@@ -5,6 +5,7 @@
 
 angular.module("myApp").controller('resultsController', function ($scope, $http, $window, webService) {
   self = this;
+  self.condition="";
   self.webService = webService;
   self.results = JSON.parse($window.sessionStorage.getItem("search"));
   if ($window.sessionStorage.getItem("username") != "guest") {
@@ -32,6 +33,13 @@ angular.module("myApp").controller('resultsController', function ($scope, $http,
     }
 
   }
+  self.orderByRating=function(){
+    for (var i=0;i<self.results.length;i++){
+      webService.getRatingToFavorites(self.results,i);
+    }
+    self.condition="-rating";
+  }
+
 
 
 }); 
