@@ -45,8 +45,8 @@ angular.module("myApp").controller('showAttractionController', function ($scope,
   
   today = yyyy + '-' +mm+ '-' + dd  ;
    webService.addRating(rating.value , userReview.value,today,self.attractionName);
-   $window.alert(userReview.value);
    $window.alert("Your review was sent");
+   
  }
 
  

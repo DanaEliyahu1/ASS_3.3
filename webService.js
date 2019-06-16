@@ -101,7 +101,10 @@ angular.module("myApp").service("webService", function ($http, $window, $rootSco
     this.getFavoriteAttractions = function () {
         var req = {
             method: 'GET',
-            url: 'http://localhost:3000/view/getFavoriteAttractions'
+            url: 'http://localhost:3000/view/getFavoriteAttractions',
+            headers: {
+                "x-auth-token":$window.sessionStorage.getItem("token")
+            }
         }
         return $http(req);
     }
@@ -120,7 +123,7 @@ angular.module("myApp").service("webService", function ($http, $window, $rootSco
         }
         var req = {
             method: 'PUT',
-            headers: { 'Content-Type': 'application/json' },
+            headers: { 'Content-Type': 'application/json' , "x-auth-token":$window.sessionStorage.getItem("token") },
             url: 'http://localhost:3000/update/updateMyAttractionSort/' + attractions + '/' + rank
         }
         return $http(req);
@@ -181,14 +184,20 @@ angular.module("myApp").service("webService", function ($http, $window, $rootSco
     this.getLastAttractions = function () {
         var req = {
             method: "GET",
-            url: 'http://localhost:3000/view/getLastAttractions'
+            url: 'http://localhost:3000/view/getLastAttractions',
+            headers: {
+                "x-auth-token":$window.sessionStorage.getItem("token")
+            }
         }
         return $http(req);
     }
     this.getRecommendedAttractions = function () {
         var req = {
             method: "GET",
-            url: "http://localhost:3000/view/getMostPopularAttractionForUser"
+            url: "http://localhost:3000/view/getMostPopularAttractionForUser",
+            headers: {
+                "x-auth-token":$window.sessionStorage.getItem("token")
+            }
         }
         return $http(req);
     }
@@ -217,6 +226,21 @@ angular.module("myApp").service("webService", function ($http, $window, $rootSco
         return $http(req);
     }
 
+    this.forgotPassword=function(username,question,answer){
+        var req={
+            method:"POST",
+            url:'http://localhost:3000/private/forgotPassword',
+            data: JSON.stringify({
+                "username": username,
+                "qid": question,
+                "answer": answer 
+            }),
+            headers: { 'Content-Type': 'application/json' }
+        }
+        return $http(req);
+    
+    }
+
     this.addRating=function(rating,review,date,attractionName){
         var req={
             method:"POST",
@@ -228,7 +252,7 @@ angular.module("myApp").service("webService", function ($http, $window, $rootSco
                 "date": date,
                 "attractionName": attractionName 
             }),
-            headers: { 'Content-Type': 'application/json' }
+            headers: { 'Content-Type': 'application/json', "x-auth-token":$window.sessionStorage.getItem("token") }
         }
         return $http(req);
     }

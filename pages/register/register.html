@@ -24,7 +24,20 @@
         <input type="text" id="City" name="City">
         <br> Country:
         <br>
-        <input type="text" id="Country" name="Country">
+        <select name="Country" id="Country">
+                <option> Australia     </option>
+                <option>  Bolivia    </option>
+                <option>  China    </option>
+                <option>  Denemark   </option>
+                <option>  Israel    </option>
+                <option>  Latvia    </option>
+                <option>  Monaco    </option>
+                <option>  August    </option>
+                <option>  Norway    </option>
+                <option>  Panama    </option>
+                <option>  Switzerlind    </option>
+                <option>  USA    </option>
+            </select>
         <br> Question 1:
         <select name="Q1" id="Q1">
             <option ng-repeat="Question in registerCtrl.questions" id="{{Question.qid}}" value="{{Question.question}}">

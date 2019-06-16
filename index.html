@@ -33,7 +33,7 @@
         }
 
         body {
-            background-image: url("back.jpg");
+            background-image: url("resources/back.jpg");
             background-size: cover;
             font-family: "Calibri";
             font-style: bold;
@@ -50,10 +50,12 @@
     <!-- the website -->
     <text style="font-size: 90px;">The city of Barcelona</text>
     <br>
+    <br>
+    <br>
     <!-- <span ng-bind="Mainctrl.helloMsg"></span> -->
     <!-- menu -->
-    <table ng-model="currUser" ng-controller="loginController as loginCtrl"
-        style="font-size: 18px;background-color:rgb(200, 214, 173);">
+    <table alignment="center" ng-model="currUser" ng-controller="loginController as loginCtrl"
+        style="font-size:  18px;background-color:rgb(75, 204, 226);">
         <tr>
         </tr>
         <th>
@@ -70,7 +72,7 @@
                 <!-- LOG IN -->
                 <form name="loginform" ng-submit="loginCtrl.login()">
                     username:
-                    <input id='username' name="username" ng-model="username" required ng-minlength="4">
+                    <input id='username' name="username" ng-model="username" required ng-minlength="3">
                     <br> password:
                     <input id='password' type="password" name="password" ng-model="password">
                     <br>

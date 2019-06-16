@@ -2,16 +2,18 @@
 angular.module("myApp").controller('homeController', function ($scope, $http, webService, $window) {
   self = this;
 
+  if($window.sessionStorage.getItem("username") != "guest"){
 
+  
   webService.getLastAttractions()
     .then(function mySuccess(response) {
       self.lastSaved = response.data;
-      if ($window.sessionStorage.getItem("username") != "guest") { 
+    
         for (var i = 0; i < self.lastSaved.length; i++) {
           self.lastSaved[i].isFavorite = webService.isFavorite(self.lastSaved[i].attractionName);
         }
   
-      }
+     
     }, function myError(response) {
       self.lastSaved = response.statusText;
 
@@ -20,18 +22,17 @@ angular.module("myApp").controller('homeController', function ($scope, $http, we
   webService.getRecommendedAttractions()
     .then(function mySuccess(response) {
       self.recommended = response.data;
-      if ($window.sessionStorage.getItem("username") != "guest") {
-       
+     
 
         for (var i = 0; i < self.recommended.length; i++) {
           self.recommended[i].isFavorite = webService.isFavorite(self.recommended[i].attractionName);
         }
-      }
+     
     }, function myError(response) {
       self.recommended = response.statusText;
 
     });
-
+}
   webService.getPopularAttractions()
     .then(function mySuccess(response) {
       self.popular = response.data;

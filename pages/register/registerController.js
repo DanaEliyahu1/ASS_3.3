@@ -24,7 +24,6 @@ webService.getQuestions().then(function mySuccess(response) {
 
 
 self.register=function(){
-  $window.alert("OOOOOOO");
   var categoriesChosen=[];
   for(var i=0; i<self.categories.length;i++){
     if(self.isChecked[i]){
@@ -32,6 +31,10 @@ self.register=function(){
     }
 
 
+  }
+  if(Q1.value==Q2.value){
+    $window.alert("Choose different questions");
+    return;
   }
   webService.register(
     UserName.value,
