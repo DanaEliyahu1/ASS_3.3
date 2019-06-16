@@ -257,5 +257,22 @@ angular.module("myApp").service("webService", function ($http, $window, $rootSco
         return $http(req);
     }
     
+    this.getRatingToFavorites=function(favorites,i){
+        var req={
+            method:"GET",
+            url: 'http://localhost:3000/view/viewAttraction/' + favorites[i].attractionName
+        }
+         $http(req).then(function mySuccess(response) {
+            
+             $window.alert(JSON.stringify(response.data));
+            favorites[i].rating=response.data[0].rating;
+      
+          }, function myError(response) {
+            $window.alert(response.data);
+      
+          });
+      
+
+    }
 
 })

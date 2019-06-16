@@ -45,22 +45,9 @@ angular.module("myApp").controller('favoritesController', function ($window, web
   ///********************************************************************************************************** */
   self.orderByRating=function(){
     for (var i=0;i<self.favorites.length;i++){
-      webService.getRating(self.favorites[i].attractionName,i)
-      .then(function mySuccess(response) {
-        for(var j=0;j<self.favorites.length;j++){
-          if(self.favorites[j].attractionName==response.data[0].rating){
-            self.favorites[j].rating=response.data[0].rating;
-          }
-        }
-        
-  
-      }, function myError(response) {
-        
-  
-      });
-      
+      webService.getRatingToFavorites(self.favorites,i);
     }
-    self.condition="rating";
+    self.condition="-rating";
   }
 
 
