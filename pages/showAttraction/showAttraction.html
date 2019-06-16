@@ -45,7 +45,7 @@
     <H2> <text ng-bind="showAttractionCtrl.currAttraction[0].category"> </text> </H2>
     <p ng-bind="showAttractionCtrl.currAttraction[0].description"></p>
     <p>
-         <b>RATING: <text ng-bind="showAttractionCtrl.currAttraction[0].rating"></text></b>
+         <b>RATING: {{showAttractionCtrl.currAttraction[0].rating*20}}%</b>
     </p>
     <p  ng-model="showAttractionCtrl.isFavorite" ng-show="(!(showAttractionCtrl.isFavorite))&&(currUser!='guest')" ng-click="showAttractionCtrl.addFavorite(showAttractionCtrl.currAttraction[0].attractionName,showAttractionCtrl.currAttraction[0].picture)">
         LIKE IT? SAVE IT <img class="starImg" ng-src=",./../resources/star.png"> 
@@ -60,13 +60,15 @@
      <h2>REVIEWS:</h2>
      <span  ng-repeat="review in showAttractionCtrl.reviews" >
         <span style="border:2px solid rgb(245, 247, 238); background-color: gray; " >
-            {{review.username}}, rating:
+            {{review.username}} {{review.date.substring(0,10)}}, rating:
         {{review.rating}}
           <br>
         {{review.review}}
          <br>
         </span>
      </span>
+     <br>
+     <br>
      <input type="button" value="Add Review" onclick="document.getElementById('aboutmodal').style.display='block'">
      
      <div  id="aboutmodal" style="display:none" class="AboutM">

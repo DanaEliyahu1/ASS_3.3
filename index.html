@@ -23,6 +23,7 @@
     <script src="pages/showAttraction/showAttraction.js"></script>
     <script src="pages/register/registerController.js"></script>
     <script src="pages/results/resultsController.js"></script>
+    <script src="pages/forgotPassword/forgotPasswordController.js"></script>
 
 
     <style>
@@ -58,6 +59,11 @@
         <th>
             hello
             <text ng-model="currUser">{{currUser}}</text>
+            <span ng-show="currUser=='guest'"><br>
+                <br>
+                 You don't have an account ? JOIN NOW!! REGISTER HERE! 
+            </span>
+           
         </th>
         <th>
             <span ng-show="currUser=='guest'">
@@ -69,6 +75,9 @@
                     <input id='password' type="password" name="password" ng-model="password">
                     <br>
                     <input ng-disabled="" type="submit" id="submitLogIn" value="LOG IN">
+                    <span>
+                        <a href="#!forgotPassword">Forgot Password?</a>
+                    </span>
                 </form>
             </span>
         </th>
@@ -94,6 +103,7 @@
                     <span>
                         <a href="#!register">register</a>
                     </span>
+                
                 </span>
                 <span ng-show="true">
                     <span>
