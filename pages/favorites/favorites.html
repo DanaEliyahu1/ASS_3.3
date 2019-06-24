@@ -41,7 +41,7 @@
         font-size: 24px;
     }
 </style>
-<body ng-model="currUser" ng-show="currUser!='guest'" ng-app="myApp" ng-controller="favoritesCtrl">
+<body ng-model="currUser" ng-show="currUser!='guest'" ng-app="myApp" ng-controller="favoritesCtrl" ng-show="currUser!='guest'">
 <h2>YOUR CURRENT SAVED POINTS OF VIEW </h2>
 <br>
 <input class="saveList" ng-click="favoritesCtrl.saveAttractions()" ng-disabled="" type="submit" id="submitSaveList" value="save your favorite attractions list!">
@@ -59,9 +59,10 @@
             <span ng-click="favoritesCtrl.webService.showAttraction(attraction.attractionName)">
                 <div ng-bind="attraction.attractionName"></div>
                 <img class="attractionImg" ng-src=",./../{{attraction.picture}}">
+               
             </span>
             <!--  <span ng-click= "resultsCtrl.a(attraction.attractionName)">-->
-
+            <input type="button" ng-show="favoritesCtrl.condition=='+rank'" ng-click="favoritesCtrl.swap(attraction.attractionName)" value="<<">
             <p ng-model="attraction.isFavorite" ng-show="(!(attraction.isFavorite))&&(currUser!='guest')"
                 ng-click="favoritesCtrl.addFavorite(attraction.attractionName,attraction.picture)">
                 LIKE IT? SAVE IT <img class="starImg" ng-src=",./../resources/star.png">

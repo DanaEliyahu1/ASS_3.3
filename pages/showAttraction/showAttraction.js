@@ -44,8 +44,15 @@ angular.module("myApp").controller('showAttractionController', function ($scope,
   var yyyy = today.getFullYear();
   
   today = yyyy + '-' +mm+ '-' + dd  ;
-   webService.addRating(rating.value , userReview.value,today,self.attractionName);
-   $window.alert("Your review was sent");
+   webService.addRating(rating.value , userReview.value,today,self.attractionName).then(function mySuccess(response) {
+    $window.alert("Your review was sent");
+ 
+ 
+  }, function myError(response) {
+    $window.alert(response.data);
+ 
+  });
+  
    
  }
 

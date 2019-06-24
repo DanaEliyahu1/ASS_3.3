@@ -37,6 +37,7 @@ app.controller("loginController", function ($scope, webService, $window, $rootSc
         $window.sessionStorage.setItem("token", "");
         $window.sessionStorage.setItem("username", "guest");
         $rootScope.currUser = "guest";
+        $window.location="#!home";
     }
 
 

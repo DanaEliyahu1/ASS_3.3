@@ -8,8 +8,12 @@ angular.module("myApp").controller('homeController', function ($scope, $http, we
   webService.getLastAttractions()
     .then(function mySuccess(response) {
       self.lastSaved = response.data;
-    
-        for (var i = 0; i < self.lastSaved.length; i++) {
+      self.calculated= JSON.parse($window.sessionStorage.getItem("favorites"));
+      self.lastSaved=[];
+        for (var i = 0; i < Math.min(self.calculated.length,2); i++) {
+
+          self.lastSaved[i]=self.calculated[self.calculated.length-1-i];
+          
           self.lastSaved[i].isFavorite = webService.isFavorite(self.lastSaved[i].attractionName);
         }
   

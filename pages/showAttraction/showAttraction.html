@@ -69,7 +69,7 @@
      </span>
      <br>
      <br>
-     <input type="button" value="Add Review" onclick="document.getElementById('aboutmodal').style.display='block'">
+     <input type="button" ng-show="currUser!='guest'"value="Add Review" onclick="document.getElementById('aboutmodal').style.display='block'">
      
      <div  id="aboutmodal" style="display:none" class="AboutM">
             <div class="modal">
